@@ -85,7 +85,7 @@
 [Additional note:]
 	This program outputs a tmp.out file that contains running details; you don’t need to read it unless your job is running slowly in the queue and you want to know which iteration it is at.
 
-	
+
 3. INPUT FORMAT:
 
 	1st line: column names
@@ -146,7 +146,7 @@
 				Shown by showPop() function in plot.R
 
 		*impute* files: if you have missing marks in input, then those will be imputed and output here.
-	
+
 
 5. VISUALIZATION:
 
@@ -175,7 +175,7 @@
 				middle one is the epigenetic state using results in *.state file;
 				and bottom one is the position class using results in *.state file.
 
-	
+
 6. REFERENCES
 
 	Yu Zhang, Feng Yue, Ross C. Hardison. Bayesian Modeling of Epigenetic Variation in Multiple Human Cell Types. bioRxiv, doi: http://dx.doi.org/10.1101/018028
