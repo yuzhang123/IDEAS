@@ -85,6 +85,7 @@
 [Additional note:]
 	This program outputs a tmp.out file that contains running details; you don’t need to read it unless your job is running slowly 	
 	in the queue and you want to know which iteration it is at.
+
 	
 3. INPUT FORMAT:
 
@@ -128,7 +129,6 @@
 	
 	
 	This is the same example as above, but with a 3rd column denoting the end of window positions
-
 
 
 4. OUTPUT FILES:
