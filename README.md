@@ -54,6 +54,7 @@
 
 
 //////////////(B) Incorporating information from other results///////////////////////	
+
 	-startpara parafile 	This option allows you to specify the starting parameter values for the emission Gaussian distribution for states. The parafile is the .para file output by IDEAS.
 
 	-prevrun statefile clusterfile		This option allows you to restore segmentations for the same data from a previous run of IDEAS, and then continue segmentation. However, hyper parameters are not restored from previous runs, and thus this is not an exact continuation.
@@ -86,6 +87,7 @@
 
 
 3. INPUT FORMAT:
+
 	1st line: column names
 	remaining lines: position information and data
 
@@ -103,28 +105,39 @@
 		"mark1" etc can also be replaced by actual mark names without space.
 		both cell type and mark names need to be provided in the 1st line, and they need to be connected by "." (so DO NOT use ‘.’ in either cell names or mark names).
 	The toy.data has identical column names for cell-mark combinations, which indicate replicate data.
+	
 	If certain mark is missing in a cell type, it is fine, such as:
+		
 		chr pos cell1.mark1 cell1.mark3 cell2.mark1 cell2.mark2
+		
 		1 1000200 1 0 4 0 
-		1 1000400 4 1 1 1 
+		
+		1 1000400 4 1 1 1
+		
 		1 1000600 10 7 8 2 
+		
 	In this example, mark2 in cell1 and mark3 in cell2 are missing.
 	However, in such case, the program won’t know the order of marks as you want them to be (e.g., mark1 mark2 mark3). 
 	Instead, the order of marks taken by the program will be determined by their order of appearance, and in this example, mark1, mark3, mark2.
 	This matters because when reading the output from the program, you want to know which column correspond to which mark in the mean vector for each epigenetic state. Fortunately, I do have the mark names output in the parameter file.
 
 	[Additional notes:]
+	
 	If you want to specify a window instead of a position for the window, you can do so by inserting a 3rd column in input file as follows
 	chr pos_st pos_ed cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
 	1 1000200 1000400 1 5 0 4 0 12
+	
 	1 1000400 1000600 4 17 1 1 1 0
+	
 	...
+	
 	
 	This is the same example as above, but with a 3rd column denoting the end of window positions
 
 
 
 4. OUTPUT FILES:
+
 	*.state file: 	Epigenetic states and position classes
 			First 4 columns are index, chr, position_st position_ed (position_ed will be the same as position_st if only one position for each window is provided in input) 
 			The next N columns are epigenetic states, where N=total number of cell types, including replicates. 
@@ -144,6 +157,7 @@
 
 
 5. VISUALIZATION:
+
 	The included plot.R is a R script that visualizes the segmentation results.
 	In R environment, load this file by source("plot.R").
 	
@@ -171,6 +185,7 @@
 
 	
 6. REFERENCES
+
 	Yu Zhang, Feng Yue, Ross C. Hardison. Bayesian Modeling of Epigenetic Variation in Multiple Human Cell Types. bioRxiv, doi: http://dx.doi.org/10.1101/018028
 
 __________________________________________________________
