@@ -92,11 +92,10 @@
 	remaining lines: position information and data
 
 	An example for 3 marks in 2 cell lines:
+	
 	chr pos cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
 	1 1000200 1 5 0 4 0 12
-	
 	1 1000400 4 17 1 1 1 0
-	
 	1 1000600 10 31 7 8 2 0
 	
 	In this example, the first two columns are genome positions (left, center or right end of a window? doesn’t matter, but be consistent for all windows), the next 6 columns are read count data.
@@ -109,11 +108,8 @@
 	If certain mark is missing in a cell type, it is fine, such as:
 		
 		chr pos cell1.mark1 cell1.mark3 cell2.mark1 cell2.mark2
-		
 		1 1000200 1 0 4 0 
-		
 		1 1000400 4 1 1 1
-		
 		1 1000600 10 7 8 2 
 		
 	In this example, mark2 in cell1 and mark3 in cell2 are missing.
@@ -124,11 +120,10 @@
 	[Additional notes:]
 	
 	If you want to specify a window instead of a position for the window, you can do so by inserting a 3rd column in input file as follows
+	
 	chr pos_st pos_ed cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
 	1 1000200 1000400 1 5 0 4 0 12
-	
 	1 1000400 1000600 4 17 1 1 1 0
-	
 	...
 	
 	
