@@ -77,16 +77,15 @@
 			See the included myrun.script for an example PBS script to be submitted in queue for running IDEAS in parallel using 64 threads.
 	
 	
-	[Disclaimer:]
+[Disclaimer:]
 	Running options in (B) and (C) have not been extensively tested, so please report any issues to me and I’ll fix them. 
 	Combinations of these options have also not been extensively tested.
 	Current version supports missing marks in some cell types, but that function has not been evaluated.
 
-	[Additional note:]
+[Additional note:]
 	This program outputs a tmp.out file that contains running details; you don’t need to read it unless your job is running slowly 	
 	in the queue and you want to know which iteration it is at.
-
-
+	
 3. INPUT FORMAT:
 
 	1st line: column names
