@@ -76,12 +76,13 @@
 	-thread num	Specify the total number of threads to be used for parallelization. This number should be the same as the total number of threads you request from queue.
 			See the included myrun.script for an example PBS script to be submitted in queue for running IDEAS in parallel using 64 threads.
 	
-	[Disclaimer:]
-	Running options in (B) and (C) have not been extensively tested, so please report any issues to me and I’ll fix them. Combinations of these options have also not been extensively tested.
+	
+[Disclaimer:]
+Running options in (B) and (C) have not been extensively tested, so please report any issues to me and I’ll fix them. Combinations of these options have also not been extensively tested.
 	Current version supports missing marks in some cell types, but that function has not been evaluated.
 
-	[Additional note:]
-	This program outputs a “tmp.out" file that contains running details; you don’t need to read it unless your job is running slowly in the queue and you want to know which iteration it is at.
+[Additional note:]
+This program outputs a tmp.out file that contains running details; you don’t need to read it unless your job is running slowly in the queue and you want to know which iteration it is at.
 
 
 
@@ -93,10 +94,10 @@
 
 	An example for 3 marks in 2 cell lines:
 	
-	chr pos cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
-	1 1000200 1 5 0 4 0 12
-	1 1000400 4 17 1 1 1 0
-	1 1000600 10 31 7 8 2 0
+		chr pos cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
+		1 1000200 1 5 0 4 0 12
+		1 1000400 4 17 1 1 1 0
+		1 1000600 10 31 7 8 2 0
 	
 	In this example, the first two columns are genome positions (left, center or right end of a window? doesn’t matter, but be consistent for all windows), the next 6 columns are read count data.
 	The column names indicate that cell 1 data are provided first, and then cell 2 data. 
@@ -121,10 +122,10 @@
 	
 	If you want to specify a window instead of a position for the window, you can do so by inserting a 3rd column in input file as follows
 	
-	chr pos_st pos_ed cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
-	1 1000200 1000400 1 5 0 4 0 12
-	1 1000400 1000600 4 17 1 1 1 0
-	...
+		chr pos_st pos_ed cell1.mark1 cell1.mark2 cell1.mark3 cell2.mark1 cell2.mark2 cell2.mark3
+		1 1000200 1000400 1 5 0 4 0 12
+		1 1000400 1000600 4 17 1 1 1 0
+		...
 	
 	
 	This is the same example as above, but with a 3rd column denoting the end of window positions
