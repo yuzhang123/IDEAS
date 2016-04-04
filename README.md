@@ -132,20 +132,20 @@
 
 4. OUTPUT FILES:
 
-	*.state file: 	Epigenetic states and position classes
-			First 4 columns are index, chr, position_st position_ed (position_ed will be the same as position_st if only one position for each window is provided in input) 
-			The next N columns are epigenetic states, where N=total number of cell types, including replicates. 
-			For the toy.data, N=10 because each of 5 cell types has 2 replicates.
-			The last column is the position class label.
-			All labels starts from 0 (instead of 1).
+		*.state file: 	Epigenetic states and position classes
+				First 4 columns are index, chr, position_st position_ed (position_ed will be the same as position_st if only one position for each window is provided in input) 
+				The next N columns are epigenetic states, where N=total number of cell types, including replicates. 
+				For the toy.data, N=10 because each of 5 cell types has 2 replicates.
+				The last column is the position class label.
+				All labels starts from 0 (instead of 1).
 
-	*.para:		Frequency, mean and variance parameters for each epigenetic states. 
-			Read by readPara() function in plot.R
+		*.para:		Frequency, mean and variance parameters for each epigenetic states. 
+				Read by readPara() function in plot.R
 
-	*.cluster file: Local cell type clustering result, one row for each replicate of cell type. 
-			Shown by showPop() function in plot.R
+		*.cluster file: Local cell type clustering result, one row for each replicate of cell type. 
+				Shown by showPop() function in plot.R
 
-	*impute* files: if you have missing marks in input, then those will be imputed and output here.
+		*impute* files: if you have missing marks in input, then those will be imputed and output here.
 	
 
 5. VISUALIZATION:
