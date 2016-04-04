@@ -2,11 +2,13 @@
 	IDEAS v1.0 for Linux, by Yu Zhang	
 —————————————————————————————————————————————————
 
-1. INSTALL: 
+1.INSTALL: 
+	
 	Just unzip and untar everything to a folder.
 
 
-2. RUN:
+2.RUN:
+	
 	./ideas inputfile [options]
 	
 	Options:
@@ -86,7 +88,8 @@
 	This program outputs a tmp.out file that contains running details; you don’t need to read it unless your job is running slowly in the queue and you want to know which iteration it is at.
 
 
-3. INPUT FORMAT:
+
+3.INPUT FORMAT:
 
 	1st line: column names
 	remaining lines: position information and data
@@ -130,7 +133,7 @@
 	This is the same example as above, but with a 3rd column denoting the end of window positions
 
 
-4. OUTPUT FILES:
+4.OUTPUT FILES:
 
 		*.state file: 	Epigenetic states and position classes
 				First 4 columns are index, chr, position_st position_ed (position_ed will be the same as position_st if only one position for each window is provided in input) 
@@ -148,7 +151,7 @@
 		*impute* files: if you have missing marks in input, then those will be imputed and output here.
 
 
-5. VISUALIZATION:
+5.VISUALIZATION:
 
 	The included plot.R is a R script that visualizes the segmentation results.
 	In R environment, load this file by source("plot.R").
@@ -176,7 +179,7 @@
 				and bottom one is the position class using results in *.state file.
 
 
-6. REFERENCES
+6.REFERENCES
 
 	Yu Zhang, Feng Yue, Ross C. Hardison. Bayesian Modeling of Epigenetic Variation in Multiple Human Cell Types. bioRxiv, doi: http://dx.doi.org/10.1101/018028
 
