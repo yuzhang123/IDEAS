@@ -87,7 +87,11 @@
 [Additional note:]
 	This program outputs a tmp.out file that contains running details; you don’t need to read it unless your job is running slowly in the queue and you want to know which iteration it is at.
 
-
+	If you encountered this error when running ideas: "error while loading shared libraries: libiomp5.so",
+        you need to add the path to this library to $LD_LIBRARY_PATH.
+        First, type "find / -name libiomp5.so" in command line to locate the folder containing this library file.
+        Then, type "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:[the path folder you just found]"
+        
 
 3.INPUT FORMAT:
 
