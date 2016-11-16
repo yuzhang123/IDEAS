@@ -2,6 +2,7 @@
 
 	IDEAS v1.05 for Linux, by Yu Zhang	
 —————————————————————————————————————————————————
+
 **[11/16/2016]
 I added a R script, runideaspipe.R, to run ideas in a hopefully more stable way.The motivation is that each time IDEAS can produce slightly different results, especially different number of states, due to different starting values of the model. This R script will automatically start from different start values and combine results from different runs to come up with a concensus, followed by retraining of IDEAS. As a result, the output will be more stable and the states will be more reproducible. It however does not mean that you'll get identical result each time, as the problem that IDEAS solves is not a convex problem. See README_runideaspipe for details.
 
