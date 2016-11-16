@@ -1,6 +1,6 @@
 —————————————————————————————————————————————————
 
-	IDEAS v1.05 for Linux, by Yu Zhang	
+	IDEAS v1.10 for Linux, by Yu Zhang	
 —————————————————————————————————————————————————
 
 **[11/16/2016]
@@ -20,7 +20,7 @@ See included package for details and usage.
 
 REFERENCES
 
-	Yu Zhang, Feng Yue, Ross C. Hardison. Bayesian Modeling of Epigenetic Variation in Multiple Human Cell Types. bioRxiv, doi: http://dx.doi.org/10.1101/018028
+	Yu Zhang, Feng Yue, Ross C. Hardison. Jointly characterizing epigenetic dynamics across multiple human cell types. Nucleic Acids Res, 44(14):6721-31.
 
 __________________________________________________________
 Questions and comments?
