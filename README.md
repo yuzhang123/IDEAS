@@ -20,7 +20,8 @@ See included package for details and usage.
 
 REFERENCES
 
-	Yu Zhang, Feng Yue, Ross C. Hardison. Jointly characterizing epigenetic dynamics across multiple human cell types. Nucleic Acids Res, 44(14):6721-31.
+	Yu Zhang, Feng Yue, Ross C. Hardison. Jointly characterizing epigenetic dynamics across multiple human cell types. 
+	Nucleic Acids Res, 44(14):6721-31.
 
 __________________________________________________________
 Questions and comments?
