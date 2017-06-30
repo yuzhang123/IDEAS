@@ -1,7 +1,12 @@
 —————————————————————————————————————————————————
 
-	IDEAS v1.10 for Linux, by Yu Zhang	
+	IDEAS v1.20 for Linux, by Yu Zhang	
 —————————————————————————————————————————————————
+
+**[06/29/2017]
+A major update. The new version 1.2 implements a pipeline that identifies reproducible epigenetic states, and thus greatly improves the prediction robustness. Also, the new version streamlines the analyses of data preprocessing, segmentation, and result visualization together, or separately if desired, within one program. R is required for the new pipelines. Finally, the program can be run in parallel using multiple threads.
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 **[11/16/2016]
 I fixed a bug that probably has affected the performance of IDEAS to date, not necessarily a big issue but it has to do with memory access. So please use this updated version. Also, please be alert of how your data is distributed. The -log2 option of IDEAS will by default add 1 to the signal. If your data signal is mean read count per window, or if you've processed the data in some way such that values smaller than 1 are meaningful (i.e., not noise), then you need to use -log2 0.1, for instance, to add 0.1 instead of 1 to the data when taking log. This number should be the value that you think would corrspond to noise (or the signals below which you won't care about). I added 1 by default for maximum read count per window, as 1 read count does not imply signal. 
