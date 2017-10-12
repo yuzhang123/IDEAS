@@ -6,11 +6,11 @@
 **[10/12/2017]
 The IDEAS components are undergoing changes that will enable them to be used within Galaxy.  Complete the following steps to retrieve version 1.20 of the original IDEAS components that can be executed from the command line outside of Galaxy, and the original components will be available in the final ideas_tool directory.
 
-  wget https://github.com/yuzhang123/IDEAS/archive/f99c72c.tar.gz
-  tar -xzf f99c72c.tar.gz
-  cd IDEAS-f99c72cc70de4df270eaa647359e95193d02f232/bin
-  tar -xzf ideas_v1.2.tar.gz
-  cd ideas_tool/
+ * wget https://github.com/yuzhang123/IDEAS/archive/f99c72c.tar.gz
+ * tar -xzf f99c72c.tar.gz
+ * cd IDEAS-f99c72cc70de4df270eaa647359e95193d02f232/bin
+ * tar -xzf ideas_v1.2.tar.gz
+ * cd ideas_tool/
 
 **[06/29/2017]
 A major update. The new version 1.2 implements a pipeline that identifies reproducible epigenetic states, and thus greatly improves the prediction robustness. Also, the new version streamlines the analyses of data preprocessing, segmentation, and result visualization together, or separately if desired, within one program. R is required for the new pipelines. Finally, the program can be run in parallel using multiple threads.
