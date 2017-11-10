@@ -1,31 +1,3 @@
-#!/usr/bin/env Rscript
-
-suppressPackageStartupMessages(library("optparse"))
-
-option_list <- list(
-    make_option(c("-a", "--adult_mort"), action="store", dest="adult_mort", type="integer", help="Adjustment rate for adult mortality"),
-    make_option(c("-b", "--adult_accum"), action="store", dest="adult_accum", type="integer", help="Adjustment of DD accumulation (old nymph->adult)"),
-    make_option(c("-c", "--egg_mort"), action="store", dest="egg_mort", type="integer", help="Adjustment rate for egg mortality"),
-    make_option(c("-d", "--latitude"), action="store", dest="latitude", type="double", help="Latitude of selected location"),
-    make_option(c("-e", "--location"), action="store", dest="location", help="Selected location"),
-    make_option(c("-f", "--min_clutch_size"), action="store", dest="min_clutch_size", type="integer", help="Adjustment of minimum clutch size"),
-    make_option(c("-i", "--max_clutch_size"), action="store", dest="max_clutch_size", type="integer", help="Adjustment of maximum clutch size"),
-    make_option(c("-j", "--nymph_mort"), action="store", dest="nymph_mort", type="integer", help="Adjustment rate for nymph mortality"),
-    make_option(c("-k", "--old_nymph_accum"), action="store", dest="old_nymph_accum", type="integer", help="Adjustment of DD accumulation (young nymph->old nymph)"),
-    make_option(c("-o", "--output"), action="store", dest="output", help="Output dataset"),
-    make_option(c("-p", "--oviposition"), action="store", dest="oviposition", type="integer", help="Adjustment for oviposition rate"),
-    make_option(c("-q", "--photoperiod"), action="store", dest="photoperiod", type="double", help="Critical photoperiod for diapause induction/termination"),
-    make_option(c("-s", "--replications"), action="store", dest="replications", type="integer", help="Number of replications"),
-    make_option(c("-t", "--se_plot"), action="store", dest="se_plot", help="Plot SE"),
-    make_option(c("-u", "--year"), action="store", dest="year", type="integer", help="Starting year"),
-    make_option(c("-v", "--temperature_dataset"), action="store", dest="temperature_dataset", help="Temperature data for selected location"),
-    make_option(c("-y", "--young_nymph_accum"), action="store", dest="young_nymph_accum", type="integer", help="Adjustment of DD accumulation (egg->young nymph)")
-)
-
-parser <- OptionParser(usage="%prog [options] file", option_list=option_list)
-args <- parse_args(parser, positional_arguments=TRUE)
-opt <- args$options
-
 #markcol=rbind(c(1,0,0),c(1,1,0),c(0,1,1),c(0,0,1));
 stateColor<-function(statemean, markcolor=NULL)
 {   
