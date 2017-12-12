@@ -6,21 +6,30 @@ stateColor<-function(statemean, markcolor=NULL)
 		markcolor[order(apply(statemean,2,sd),decreasing=T)]=hsv((1:dim(statemean)[2]-1)/dim(statemean)[2],1,1)
 		markcolor=t(col2rgb(markcolor));
 	}
-
+	
 	rg=apply(statemean,1,range);
 	mm=NULL;
 	for(i in 1:dim(statemean)[1])
 	{	mm=rbind(mm,(statemean[i,]-rg[1,i]+1e-10)/(rg[2,i]-rg[1,i]+1e-10));
 	}
-	mm = mm^6; 
+	mm = mm^5; 
 	if(dim(mm)[2]>1) mm = mm / (apply(mm, 1, sum)+1e-10);
 	mycol=mm%*%markcolor;
 	s=apply(statemean,1,max);
 	s=(s-min(s))/(max(s)-min(s)+1e-10);
-#s=s^1.5;
+#s=s^0.5;
+	
+	mycol=round(255-(255-mycol)*s/0.5);
+	mycol[mycol<0]=0;
+	rt=paste(mycol[,1],mycol[,2],mycol[,3],sep=",");
+	h=t(apply(mycol,1,function(x){rgb2hsv(x[1],x[2],x[3])}));
+	h=apply(h,1,function(x){hsv(x[1],x[2],x[3])});
+	rt=cbind(rt,h);
+	return(rt);
 	
 	h=t(apply(mycol,1,function(x){rgb2hsv(x[1],x[2],x[3])}));
 	h[,2]=h[,2]*s;
+	#h[,3]=1-(1-h[,3])*s^0.5;
 	h=apply(h,1,function(x){hsv(x[1],x[2],x[3])});
 	rt=cbind(apply(t(col2rgb(h)),1,function(x){paste(x,collapse=",")}),h);
 	
@@ -43,7 +52,7 @@ createTrack<-function(statefiles, genomefile, outpref, statecolor, header, state
 		if(length(t)>0) { tg = tg[-t,]; }
 		t=which(is.na(match(tg[,2], genomesz[,1]))==T);
 		if(length(t)>0) { tg = tg[-t,]; }	
-print(c(dim(g),dim(tg)));
+		print(c(dim(g),dim(tg)));
 		g=rbind(g,tg);
 	}
 	message("Done");
@@ -54,7 +63,7 @@ print(c(dim(g),dim(tg)));
 		g1=rbind(g1,g[t[order(as.integer(g[t,3]))],]);
 	}
 	g=NULL;
-
+	
 	chr=as.character(g1[,2]);
 	posst=as.numeric(g1[,3]);
 	posed=as.numeric(g1[,4]);
@@ -67,25 +76,25 @@ print(c(dim(g),dim(tg)));
 	g1=NULL;
 	message("Generating tracks");
 	options(scipen=999);
-
+	
 	tt = which(chr[2:L]!=chr[2:L-1]);
 	tt = c(tt,which(posst[2:L]!=posed[2:L-1]));
 	tt = sort(unique(tt));
-
+	
 	for(i in 1:n)
 	{	tstate = state[,i];
 		#print(c(i,L,length(tstate),length(chr),length(posst),length(posed)));
-
+		
 		t=c(tt,which(tstate[2:L]!=tstate[2:L-1]));
 		t=sort(unique(t));
 		t0=c(0,t)+1;
 		t=c(t,L);
 		np=cbind(chr[t],posst[t0],posed[t],tstate[t]);
-
+		
 		#print("make track");
 		x = cbind(np[,1:3],statename[as.integer(np[,4])+1],1000,".",np[,2:3],statecolor[as.numeric(np[,4])+1]);
 		write.table(as.matrix(x),paste(outpref,i,"bed1",sep="."),quote=F,row.names=F,col.names=F);
-print(x[1,]);
+		print(x[1,]);
 		#x = apply(x,1,function(x){paste(x,collapse="\t")});
 		#write.table(x,paste(outpref,i,"bed",sep="."),quote=F,row.names=F,col.names=F);
 		#system(paste("sort-bed ", outpref, ".", i, ".bed > ", outpref, ".", i, ".bed1", sep=""));
@@ -105,14 +114,14 @@ run<-function(statefiles, hubid, genomeid, genomefile, statecolor, targetURL="ht
 	if(length(trackfolder) == 0) trackfolder = paste("tracks_", hubid, "/", sep="");
 	if(substring(trackfolder, nchar(trackfolder)) != "/") trackfolder = paste(trackfolder, "/", sep="");
 	dir.create(trackfolder,showWarnings=FALSE);
-
+	
 	cells=createTrack(statefiles, genomefile, paste(trackfolder, hubid, sep=""), statecolor, header=header,statename=statename);
 	if(length(cellinfo) == 0)
 	{	cellinfo = cbind(cells, cells, cells, "#000000");
 		cellinfo = array(cellinfo, dim=c(length(cells),4));
 	}
 	cellinfo = as.matrix(cellinfo);
-
+	
 	trackDb=NULL;
 	for(i in 1:length(cells))
 	{	ii=which(cells[i] == cellinfo[,1]);
@@ -130,13 +139,13 @@ run<-function(statefiles, hubid, genomeid, genomefile, statecolor, targetURL="ht
 		trackDb=c(trackDb, "visibility dense");
 		trackDb=c(trackDb, "");	
 	}
-
+	
 	write.table(trackDb, paste(trackfolder, "trackDb_", hubid, ".txt",sep=""),quote=F,row.names=F,col.names=F);
-
+	
 	write.table(c(paste("genome", genomeid), paste("trackDb trackDb_", hubid, ".txt", sep="")), paste(trackfolder, "genomes_", hubid, ".txt",sep=""), quote=F,row.names=F,col.names=F);
-
+	
 	write.table(c(paste("hub", hubid), paste("shortLabel", hubid), paste("longLabel", hubname), paste("genomesFile genomes_", hubid, ".txt", sep=""), "email yzz2 at psu.edu"), paste(trackfolder, "hub_", hubid, ".txt",sep=""), quote=F,row.names=F,col.names=F);
-
+	
 	return(1);
 }
 
@@ -149,20 +158,20 @@ createHeatmap<-function(parafile, statecolor = NULL, markcolor = NULL, cols=c("w
 	colnames(m) = colnames(x)[1+1:p];
 	marks=colnames(m);
 	rownames(m)=paste(1:l-1," (",round(x[,1]/sum(x[,1])*10000)/100,"%)",sep="");
-
+	
 	if(length(fout)!=0)
 	{	pdf(fout);	}	
 	par(mar=c(6,1,1,6));
 	rg=range(m);
 	colors=0:100/100*(rg[2]-rg[1])+rg[1];
-        my_palette=colorRampPalette(cols)(n=100);
+	my_palette=colorRampPalette(cols)(n=100);
 	defpalette=palette(my_palette);
-
+	
 	plot(NA,NA,xlim=c(0,p+0.7),ylim=c(0,l),xaxt="n",yaxt="n",xlab=NA,ylab=NA,frame.plot=F);
 	axis(1,at=1:p-0.5,labels=colnames(m),las=2);
 	axis(4,at=1:l-0.5,labels=rownames(m),las=2);
 	rect(rep(1:p-1,l),rep(1:l-1,each=p),rep(1:p,l),rep(1:l,each=p),col=round((t(m)-rg[1])/(rg[2]-rg[1])*100));#,border=NA);
-
+	
 	if(length(statecolor)==0)
 	{	if(length(markcolor)==0)
 		{	markcolor=t(col2rgb(terrain.colors(ceiling(p))[1:p]));	
@@ -188,7 +197,7 @@ createHeatmap<-function(parafile, statecolor = NULL, markcolor = NULL, cols=c("w
 				if(regexpr("h3k27ac",tolower(marks[i]))>0)
 				{	markcolor[i,]=c(250,150,0);	}
 				if(regexpr("h3k27me3",tolower(marks[i]))>0)
-				{	markcolor[i,]=c(0,0,200);	}
+				{	markcolor[i,]=c(0,0,225);	}
 				if(regexpr("h3k79me2",tolower(marks[i]))>0)
 				{	markcolor[i,]=c(200,0,200);	}
 				if(regexpr("h4k20me1",tolower(marks[i]))>0)
@@ -197,10 +206,10 @@ createHeatmap<-function(parafile, statecolor = NULL, markcolor = NULL, cols=c("w
 				{	markcolor[i,]=c(200,0,250);	}
 			}
 		}
-		statecolor=stateColor(m,markcolor)[,2];
+		statecolor=stateColor(m,markcolor)[,];
 	}
-	rect(rep(p+0.2,l),1:l-0.8,rep(p+0.8,l),1:l-0.2,col=statecolor);
-
+	rect(rep(p+0.2,l),1:l-0.8,rep(p+0.8,l),1:l-0.2,col=statecolor[,2]);
+	
 	palette(defpalette);
 	if(length(fout)!=0)
 	{	dev.off();	}
